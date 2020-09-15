@@ -3,6 +3,8 @@
 #include <conio.h>
 #include <string>
 #include <Windows.h>
+#include <cstdlib> // for rand() and srand()
+#include <ctime> // for time
 
 
 
@@ -32,7 +34,33 @@ int main() {
 	std::cout << "\t\t\t\t\t" << "|          By Erik Holst         |" << std::endl;
 	std::cout << "\t\t\t\t\t" << "----------------------------------" << std::endl;
 
+	//Main menu
+			//Add players
+				//Add 1 player vs AI
+					//Let player 1 be X (first to go) and AI to be O (second player)
+						//AI can be rand or Srand. 
+				//Add 2 players
+					//Player 1 is X (first to go) and Player 2 is O (second to go)
+			//Exit terminal in main menu
+				//Switch case (case 0)
+
+	//Add Tic tac toe board
+		//Use array to conditon where the numbers are
+		//Add X and O to the board and remove previous board.
+			//(cls)
+	
+	//Win conditions
+		//Which row is straight line
+			//Name winner in the text
+		//If the game is a draw
+		//highscores and number of games played
+
+	//Possibility to replay game. 
+		//Exit game if players wants to. 
+			//Go back to Main menu
+				//If else scenario
 
 
+	
 	return 0;
 }
