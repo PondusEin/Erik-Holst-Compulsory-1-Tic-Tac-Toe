@@ -1,0 +1,15 @@
+﻿'Erik Holst Compulsory 1 Tic Tac Toe.exe' (Win32): Loaded 'C:\Users\Erik Holst\source\repos\PondusEin\Erik-Holst-Compulsory-1-Tic-Tac-Toe\x64\Debug\Erik Holst Compulsory 1 Tic Tac Toe.exe'. Symbols loaded.
+'Erik Holst Compulsory 1 Tic Tac Toe.exe' (Win32): Loaded 'C:\Windows\System32\ntdll.dll'. 
+'Erik Holst Compulsory 1 Tic Tac Toe.exe' (Win32): Loaded 'C:\Windows\System32\kernel32.dll'. 
+'Erik Holst Compulsory 1 Tic Tac Toe.exe' (Win32): Loaded 'C:\Windows\System32\KernelBase.dll'. 
+'Erik Holst Compulsory 1 Tic Tac Toe.exe' (Win32): Loaded 'C:\Windows\System32\msvcp140d.dll'. 
+'Erik Holst Compulsory 1 Tic Tac Toe.exe' (Win32): Loaded 'C:\Windows\System32\vcruntime140d.dll'. 
+'Erik Holst Compulsory 1 Tic Tac Toe.exe' (Win32): Loaded 'C:\Windows\System32\vcruntime140_1d.dll'. 
+'Erik Holst Compulsory 1 Tic Tac Toe.exe' (Win32): Loaded 'C:\Windows\System32\ucrtbased.dll'. 
+The thread 0xe90 has exited with code 0 (0x0).
+'Erik Holst Compulsory 1 Tic Tac Toe.exe' (Win32): Loaded 'C:\Windows\System32\kernel.appcore.dll'. 
+'Erik Holst Compulsory 1 Tic Tac Toe.exe' (Win32): Loaded 'C:\Windows\System32\msvcrt.dll'. 
+'Erik Holst Compulsory 1 Tic Tac Toe.exe' (Win32): Loaded 'C:\Windows\System32\rpcrt4.dll'. 
+The thread 0x276c has exited with code 0 (0x0).
+The thread 0x46b0 has exited with code 0 (0x0).
+The program '[15480] Erik Holst Compulsory 1 Tic Tac Toe.exe' has exited with code 0 (0x0).
