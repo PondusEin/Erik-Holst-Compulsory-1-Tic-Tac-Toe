@@ -39,13 +39,15 @@ int main() {
 				//Add 1 player vs AI
 					//Let player 1 be X (first to go) and AI to be O (second player)
 						//AI can be rand or Srand. 
+						//Boolean
 				//Add 2 players
 					//Player 1 is X (first to go) and Player 2 is O (second to go)
+						//Boolean
 			//Exit terminal in main menu
 				//Switch case (case 0)
 
 	//Add Tic tac toe board
-		//Use array to conditon where the numbers are
+		//Use vector to conditon where the numbers are
 		//Add X and O to the board and remove previous board.
 			//(cls)
 	
