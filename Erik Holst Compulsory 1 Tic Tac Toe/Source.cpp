@@ -23,6 +23,10 @@
 	return integer;
 }
 */
+bool checkwin() 
+{
+
+}
 
 void printBoard() 
 {
@@ -44,20 +48,23 @@ void printBoard()
 }
 
 
-void game1() {
+void game_AI() 
+{
 	system("cls");
 	printBoard();
 
 }
 
 
-void game2() {
+void game_2_players() 
+{
 	system("cls");
 	printBoard();
 }
 
 
-void menu() {
+void menu() 
+{
 	std::cout << "\n\n\n[1] Single player vs AI " << std::endl;
 	std::cout << "[2] Two players " << std::endl;
 	std::cout << "[0] Exit terminal" << std::endl;
@@ -72,10 +79,10 @@ void menu() {
 		switch (game)
 		{
 		case 1:
-			game1();
+			game_AI();
 			break;
 		case 2:
-			game2();
+			game_2_players();
 			break;
 		case 0:
 			exit(EXIT_SUCCESS);
