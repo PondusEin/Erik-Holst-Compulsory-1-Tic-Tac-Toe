@@ -129,6 +129,8 @@ int main()
 		//highscores and number of games played
 
 	//Possibility to replay game. 
+		//Replay same scenario.
+			// If not, then go back to main menu
 		//Exit game if players wants to. 
 			//Go back to Main menu
 				//If else scenario
