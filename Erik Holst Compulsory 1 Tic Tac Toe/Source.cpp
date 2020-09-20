@@ -41,7 +41,7 @@ int main() {
 	std::cout << "\t\t\t\t\t" << "|             v 1.0              |" << std::endl;
 	std::cout << "\t\t\t\t\t" << "----------------------------------" << std::endl;
 
-	std::cout << '\n' << "Welcome to a simplistic version of Tic Tac Toe.  " << std::endl;
+	std::cout << '\n' << "Welcome to Tic Tac Toe v 1.0!  " << std::endl;
 
 
 	printBoard();
