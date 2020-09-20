@@ -1,9 +1,7 @@
 #define NOMINMAX 
 #include <iostream>		// standard library header
-#include <stdlib.h>		
 #include <conio.h>		// For _getch();
 #include <string>		// For writing answers
-#include <Windows.h>	
 #include <cstdlib>		// for rand() and srand()
 #include <ctime>		// for time
 #include <vector>		// for vectors
@@ -23,24 +21,37 @@
 	return integer;
 }
 */
+char winner() {
+	const int winning_rows[8][3] =
+	{
+		{0, 1, 2},
+		{3, 4, 5},
+		{6, 7, 8},
+		{0, 3, 6},
+		{1, 4, 7},
+		{2, 5, 8},
+		{0, 4, 8},
+		{2, 4, 6}
 
-void printBoard() 
+	};
+	const int total_rows = 8;
+}
+
+
+void printBoard(const vector <char> &board) 
 {
 	const int size = 10;
 	int myarray[size] = {};
 	std::vector <char> board = { '1','2','3','4','5','6','7','8','9' }; //ikke int.
 
-	  for (int i = 0; i < board.size(); i++)
+	  for (int i = 0; i < 9; i += 3)
 	  {
-		  if (i % 3 == 0)
-		  {
-			  std::cout << '\n' << "-------------";
-			  std::cout << "\n" << '|';  
-		  }
-		  std::cout << ' ' << board[i] << ' '; //ikke 0
-		  std::cout << "|";
+		  std::cout << " " << board.at(i) << " | " << board.at(i + 1) << " | " 
+			  << board.at(i + 2) << " " << std::endl;
+		  if (i < 6)
+			  std::cout << "---|---|---" << std::endl;
 	  }
-	  std::cout << '\n' << "-------------";
+	  std::cout << std::endl;
 }
 
 
