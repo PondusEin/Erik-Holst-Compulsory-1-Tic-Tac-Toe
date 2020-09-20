@@ -23,10 +23,6 @@
 	return integer;
 }
 */
-bool checkwin() 
-{
-
-}
 
 void printBoard() 
 {
@@ -48,23 +44,20 @@ void printBoard()
 }
 
 
-void game_AI() 
-{
+void game1() {
 	system("cls");
 	printBoard();
 
 }
 
 
-void game_2_players() 
-{
+void game2() {
 	system("cls");
 	printBoard();
 }
 
 
-void menu() 
-{
+void menu() {
 	std::cout << "\n\n\n[1] Single player vs AI " << std::endl;
 	std::cout << "[2] Two players " << std::endl;
 	std::cout << "[0] Exit terminal" << std::endl;
@@ -79,10 +72,10 @@ void menu()
 		switch (game)
 		{
 		case 1:
-			game_AI();
+			game1();
 			break;
 		case 2:
-			game_2_players();
+			game2();
 			break;
 		case 0:
 			exit(EXIT_SUCCESS);
@@ -107,10 +100,7 @@ int main()
 	std::cout << "\t\t\t\t\t" << "|             v 1.0              |" << std::endl;
 	std::cout << "\t\t\t\t\t" << "----------------------------------" << std::endl;
 
-	std::cout << "\n\t\t\t\t" << "Welcome to a simplistic version of Tic Tac Toe.  " << std::endl;
-
-
-	menu();
+	std::cout << '\n' << "Welcome to a simplistic version of Tic Tac Toe.  " << std::endl;
 
 	
 	//Main menu
@@ -136,8 +126,6 @@ int main()
 		//highscores and number of games played
 
 	//Possibility to replay game. 
-		//Replay same scenario.
-			// If not, then go back to main menu
 		//Exit game if players wants to. 
 			//Go back to Main menu
 				//If else scenario
