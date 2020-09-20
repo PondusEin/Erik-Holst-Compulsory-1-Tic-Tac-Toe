@@ -23,24 +23,17 @@
 */
 bool checkwin() 
 {
-
+	return 0;
 }
 
 void printBoard() 
 {
-	const int size = 10;
-	int myarray[size] = {};
-	std::vector <char> board = { '1','2','3','4','5','6','7','8','9' }; //ikke int.
-
-	  for (int i = 0; i < board.size(); i++)
-	  {
-		  if (i % 3 == 0)
-		  {
-			  std::cout << '\n' << "-------------";
-			  std::cout << "\n" << '|';  
-		  }
-		  std::cout << ' ' << board[i] << ' '; //ikke 0
-		  std::cout << "|";
+	//system("cls");
+	std::vector	<char> board = { '1','2','3','4','5','6','7','8','9' };
+	for (int i = 0; i < board.size(); i+=3){
+		std::cout << " " << board.at(i) << " | " << board.at(i + 1) << " | " << board.at(i + 2) << " " << std::endl;
+		if (i < 6)
+			std::cout << "---|---|---" << std::endl;
 	  }
 	  std::cout << std::endl;
 }
