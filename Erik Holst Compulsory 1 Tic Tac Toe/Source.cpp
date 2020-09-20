@@ -21,54 +21,48 @@
 	return integer;
 }
 */
-char winner() {
-	const int winning_rows[8][3] =
-	{
-		{0, 1, 2},
-		{3, 4, 5},
-		{6, 7, 8},
-		{0, 3, 6},
-		{1, 4, 7},
-		{2, 5, 8},
-		{0, 4, 8},
-		{2, 4, 6}
+bool checkwin() 
+{
 
-	};
-	const int total_rows = 8;
 }
 
-
-void printBoard(const vector <char> &board) 
+void printBoard() 
 {
 	const int size = 10;
 	int myarray[size] = {};
 	std::vector <char> board = { '1','2','3','4','5','6','7','8','9' }; //ikke int.
 
-	  for (int i = 0; i < 9; i += 3)
+	  for (int i = 0; i < board.size(); i++)
 	  {
-		  std::cout << " " << board.at(i) << " | " << board.at(i + 1) << " | " 
-			  << board.at(i + 2) << " " << std::endl;
-		  if (i < 6)
-			  std::cout << "---|---|---" << std::endl;
+		  if (i % 3 == 0)
+		  {
+			  std::cout << '\n' << "-------------";
+			  std::cout << "\n" << '|';  
+		  }
+		  std::cout << ' ' << board[i] << ' '; //ikke 0
+		  std::cout << "|";
 	  }
 	  std::cout << std::endl;
 }
 
 
-void game1() {
+void game_AI() 
+{
 	system("cls");
 	printBoard();
 
 }
 
 
-void game2() {
+void game_2_players() 
+{
 	system("cls");
 	printBoard();
 }
 
 
-void menu() {
+void menu() 
+{
 	std::cout << "\n\n\n[1] Single player vs AI " << std::endl;
 	std::cout << "[2] Two players " << std::endl;
 	std::cout << "[0] Exit terminal" << std::endl;
@@ -83,10 +77,10 @@ void menu() {
 		switch (game)
 		{
 		case 1:
-			game1();
+			game_AI();
 			break;
 		case 2:
-			game2();
+			game_2_players();
 			break;
 		case 0:
 			exit(EXIT_SUCCESS);
@@ -111,7 +105,10 @@ int main()
 	std::cout << "\t\t\t\t\t" << "|             v 1.0              |" << std::endl;
 	std::cout << "\t\t\t\t\t" << "----------------------------------" << std::endl;
 
-	std::cout << '\n' << "Welcome to a simplistic version of Tic Tac Toe.  " << std::endl;
+	std::cout << "\n\t\t\t\t" << "Welcome to a simplistic version of Tic Tac Toe.  " << std::endl;
+
+
+	menu();
 
 	
 	//Main menu
@@ -137,6 +134,8 @@ int main()
 		//highscores and number of games played
 
 	//Possibility to replay game. 
+		//Replay same scenario.
+			// If not, then go back to main menu
 		//Exit game if players wants to. 
 			//Go back to Main menu
 				//If else scenario
