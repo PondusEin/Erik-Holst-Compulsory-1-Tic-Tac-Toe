@@ -133,6 +133,11 @@ void game_2_players()
 			std::cout << "Congratulations Player 2, you are the winner";
 			}
 		}
+	else if (invalidchoice.size() == 9) {
+		printBoard();
+		std::cout << "It's a tie!";
+	}
+		
 }
 
 void menu() 
