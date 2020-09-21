@@ -5,23 +5,85 @@
 #include <ctime>		// for time
 #include <vector>		// for vectors
 
-/*int getinputfromuser (){
+std::vector <int> invalidchoice;
+std::vector	<char> board = { '1','2','3','4','5','6','7','8','9' };
+bool playeroneturn = true;
+
+int getinputfromuser (){
 
 	int integer;
 	std::cin >> integer;    
-	while (std::cin.fail()) {
+	while (std::cin.fail() || integer>9 || integer<=0 || std::count(invalidchoice.begin(), invalidchoice.end(), integer)==true) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max()), '\n';
 		system("cls");
-		std::cout << "That, my friend, is not a number...\n";
+		std::cout << "Error" << integer << "is not a valid number.\n";
 		std::cin >> integer;
 	}
+	invalidchoice.emplace_back(integer);
 	return integer;
 }
-*/
+
+void oneplayer()
+{
+	if (playeroneturn == true)
+	{
+		playeroneturn = false;
+		getinputfromuser();
+	}
+	else if (playeroneturn == false) 
+	{
+		std::srand(time(nullptr));
+	}
+}
+
+void twoplayer()
+{
+	if (playeroneturn == true)
+		{
+			playeroneturn = false;
+				getinputfromuser();
+				board.[getinputfromuser - 1] = 'X';
+		}
+		else if (playeroneturn == false)
+		{
+			playeroneturn = true;
+				getinputfromuser();
+				board.[getinputfromuser - 1] = 'O';
+		} 
+}
+
 bool checkwin() 
 {
-	return 0;
+	if (board[0] == board[1] && board[1] == board[2]) { 
+		return true;
+	}
+	else if (board[3] == board[4] && board[4] == board[5]) {
+		return true;
+	}
+	else if (board[6] == board[7] && board[7] == board[8]) {
+		return true;
+	}
+	else if (board[0] == board[3] && board[3] == board[6]) {
+		return true;
+	}
+	else if (board[1] == board[4] && board[4] == board[7]) {
+		return true;
+	}
+	else if (board[2] == board[5] && board[5] == board[8]) {
+		return true;
+	}
+	else if (board[0] == board[4] && board[4] == board[8]) {
+		return true;
+	}
+	else if (board[2] == board[4] && board[4] == board[6]) {
+		return true;
+	}
+	else
+	{
+		retrun false;
+	}
+	
 }
 
 void printBoard() 
@@ -36,12 +98,16 @@ void printBoard()
 	  std::cout << std::endl;
 }
 
+void checkmark() 
+{
+
+}
 
 void game_AI() 
 {
 	system("cls");
 	printBoard();
-
+	oneplayer();
 }
 
 
@@ -49,6 +115,8 @@ void game_2_players()
 {
 	system("cls");
 	printBoard();
+	twoplayer();
+
 }
 
 
