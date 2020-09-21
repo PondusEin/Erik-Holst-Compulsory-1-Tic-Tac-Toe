@@ -1,11 +1,9 @@
 #define NOMINMAX 
 #include <iostream>		// standard library header
 #include <conio.h>		// For _getch();
-#include <string>		// For writing answers
 #include <cstdlib>		// for rand() and srand()
 #include <ctime>		// for time
 #include <vector>		// for vectors
-#include <iterator>		// for std::size
 
 /*int getinputfromuser (){
 
