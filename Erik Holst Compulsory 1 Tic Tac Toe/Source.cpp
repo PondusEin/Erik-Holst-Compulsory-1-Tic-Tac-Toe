@@ -12,7 +12,8 @@ bool playeroneturn = true;
 int getinputfromuser (){
 
 	int integer;
-	std::cin >> integer;    
+	std::cin >> integer;
+	std::cout << integer << "this is your number";
 	while (std::cin.fail() || integer>9 || integer<=0 || std::count(invalidchoice.begin(), invalidchoice.end(), integer)==true) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max()), '\n';
@@ -40,17 +41,17 @@ void oneplayer()
 void twoplayer()
 {
 	if (playeroneturn == true)
-		{
-			playeroneturn = false;
-				getinputfromuser();
-				board.[getinputfromuser - 1] = 'X';
-		}
-		else if (playeroneturn == false)
-		{
-			playeroneturn = true;
-				getinputfromuser();
-				board.[getinputfromuser - 1] = 'O';
-		} 
+	{
+		std::cout<< "Player 1's [X] turn: "
+		board[getinputfromuser() - 1] = 'X';
+		playeroneturn = false;
+	}
+	else if (playeroneturn == false)
+	{
+		std::cout << "Player 2's [O] turn: "
+		board[getinputfromuser() - 1] = 'O';
+		playeroneturn = true;
+	} 
 }
 
 bool checkwin() 
@@ -81,15 +82,14 @@ bool checkwin()
 	}
 	else
 	{
-		retrun false;
+		return false;
 	}
 	
 }
 
 void printBoard() 
 {
-	//system("cls");
-	std::vector	<char> board = { '1','2','3','4','5','6','7','8','9' };
+	system("cls");
 	for (int i = 0; i < board.size(); i+=3){
 		std::cout << " " << board.at(i) << " | " << board.at(i + 1) << " | " << board.at(i + 2) << " " << std::endl;
 		if (i < 6)
@@ -105,20 +105,31 @@ void checkmark()
 
 void game_AI() 
 {
-	system("cls");
-	printBoard();
-	oneplayer();
+	while (checkwin() == false && invalidchoice.size() < 9)
+	{
+		//system("cls");
+		printBoard();
+		oneplayer();
+	}
 }
-
 
 void game_2_players() 
 {
-	system("cls");
-	printBoard();
-	twoplayer();
-
+	while (checkwin() == false && invalidchoice.size() < 9 )
+	{
+		//system("cls");
+		printBoard();
+		twoplayer();
+	}
+	else if (checkwin() == true) 
+		{
+		int player;
+		if (playeroneturn == true) {
+			std::cout << "Congratulations Player one, you are the winner";
+		}
+			
+		}
 }
-
 
 void menu() 
 {
