@@ -42,13 +42,13 @@ void twoplayer()
 {
 	if (playeroneturn == true)
 	{
-		std::cout<< "Player 1's [X] turn: "
+		std::cout << "Player 1's [X] turn: ";
 		board[getinputfromuser() - 1] = 'X';
 		playeroneturn = false;
 	}
 	else if (playeroneturn == false)
 	{
-		std::cout << "Player 2's [O] turn: "
+		std::cout << "Player 2's [O] turn: ";
 		board[getinputfromuser() - 1] = 'O';
 		playeroneturn = true;
 	} 
@@ -116,12 +116,13 @@ void game_AI()
 void game_2_players() 
 {
 	while (checkwin() == false && invalidchoice.size() < 9 )
+	
 	{
 		//system("cls");
 		printBoard();
 		twoplayer();
 	}
-	else if (checkwin() == true) 
+	if (checkwin() == true) 
 		{
 		int player;
 		if (playeroneturn == true) {
