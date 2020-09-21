@@ -12,8 +12,7 @@ bool playeroneturn = true;
 int getinputfromuser (){
 
 	int integer;
-	std::cin >> integer;
-	std::cout << integer << "this is your number";
+	std::cin >> integer;;
 	while (std::cin.fail() || integer>9 || integer<=0 || std::count(invalidchoice.begin(), invalidchoice.end(), integer)==true) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max()), '\n';
@@ -124,11 +123,15 @@ void game_2_players()
 	}
 	if (checkwin() == true) 
 		{
+		printBoard();
 		int player;
-		if (playeroneturn == true) {
+		if (playeroneturn != true) {
 			std::cout << "Congratulations Player one, you are the winner";
 		}
-			
+			else if (playeroneturn == true) 
+			{
+			std::cout << "Congratulations Player 2, you are the winner";
+			}
 		}
 }
 
