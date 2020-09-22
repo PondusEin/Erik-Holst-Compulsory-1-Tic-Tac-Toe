@@ -28,12 +28,14 @@ void oneplayer()
 {
 	if (playeroneturn == true)
 	{
+		std::cout << "Player's [X] turn: "
 		playeroneturn = false;
 		getinputfromuser();
 	}
 	else if (playeroneturn == false) 
 	{
 		std::srand(time(nullptr));
+		playeroneturn = true;
 	}
 }
 
@@ -110,6 +112,23 @@ void game_AI()
 		printBoard();
 		oneplayer();
 	}
+	if (checkwin() == true)
+	{
+		printBoard();
+		int player;
+		if (playeroneturn != true) {
+			std::cout << "Congratulations Player one, you are the winner" << std::endl;
+		}
+		else if (playeroneturn == true)
+		{
+			std::cout << "AI is the Winner" << std::endl;
+		}
+	}
+	else if (invalidchoice.size() == 9) {
+		printBoard();
+		std::cout << "It's a tie!" << std::endl;
+	}
+
 }
 
 void game_2_players() 
@@ -126,16 +145,16 @@ void game_2_players()
 		printBoard();
 		int player;
 		if (playeroneturn != true) {
-			std::cout << "Congratulations Player one, you are the winner";
+			std::cout << "Congratulations Player one, you are the winner" << std::endl;
 		}
 			else if (playeroneturn == true) 
 			{
-			std::cout << "Congratulations Player 2, you are the winner";
+			std::cout << "Congratulations Player 2, you are the winner" << std::endl;
 			}
 		}
 	else if (invalidchoice.size() == 9) {
 		printBoard();
-		std::cout << "It's a tie!";
+		std::cout << "It's a tie!" << std::endl;
 	}
 		
 }
@@ -199,19 +218,6 @@ int main()
 				//Add 2 players
 					//Player 1 is X (first to go) and Player 2 is O (second to go)
 						//Boolean
-
-
-	//Add Tic tac toe board
-		//Use vector to conditon where the numbers are
-		//Add X and O to the board and remove previous board.
-			//(cls)
-	
-	//Win conditions
-		//Which row is straight line
-			//Name winner in the text
-		//If the game is a draw
-		//highscores and number of games played
-
 	//Possibility to replay game. 
 		//Replay same scenario.
 			// If not, then go back to main menu
