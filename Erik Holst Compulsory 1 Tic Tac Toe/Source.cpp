@@ -28,7 +28,8 @@ void oneplayer()
 {
 	if (playeroneturn == true)
 	{
-		std::cout << "Player's [X] turn: "
+		std::cout << "Player's [X] turn: ";
+		board[getinputfromuser() - 1] = 'X';
 		playeroneturn = false;
 		getinputfromuser();
 	}
@@ -121,7 +122,7 @@ void game_AI()
 		}
 		else if (playeroneturn == true)
 		{
-			std::cout << "AI is the Winner" << std::endl;
+			std::cout << "AI is the winner" << std::endl;
 		}
 	}
 	else if (invalidchoice.size() == 9) {
@@ -224,6 +225,5 @@ int main()
 		//Exit game if players wants to. 
 			//Go back to Main menu
 				//If else scenario
-
 	return 0;
 }
