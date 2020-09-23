@@ -31,11 +31,11 @@ void oneplayer()
 		std::cout << "Player's [X] turn: ";
 		board[getinputfromuser() - 1] = 'X';
 		playeroneturn = false;
-		getinputfromuser();
 	}
 	else if (playeroneturn == false) 
 	{
 		std::srand(time(nullptr));
+		board[getinputfromuser() - 1] = 'O';
 		playeroneturn = true;
 	}
 }
