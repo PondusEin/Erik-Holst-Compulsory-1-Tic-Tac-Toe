@@ -4,16 +4,50 @@
 #include <cstdlib>		// for rand() and srand()
 #include <ctime>		// for time
 #include <vector>		// for vectors
+#include <string>
 
 std::vector <int> invalidchoice;
 std::vector	<char> board = { '1','2','3','4','5','6','7','8','9' };
 bool playeroneturn = true;
+int replaygame{ 1 };
+bool fixproblem = true;
+
+void clearboard() {
+	invalidchoice.clear();
+	for (int i = 1; i <= 9; i++)
+	{
+		char replace = '0' + i;
+		board[i - 1] = replace;
+	}
+}
+
+void replaysystem() {
+	std::cout << "Would you like to play again?\nReplay same game [1]\nExit game [0]" << std::endl;
+
+	do
+	{
+		std::cin >> replaygame;
+		switch (replaygame)
+		{
+		case 1:
+			clearboard();
+			fixproblem = false;
+			break;
+		case 0:
+			exit(1);
+			break;
+		default:
+			std::cout << "\nPlease select a number [0-1]. ";
+			break;
+		}
+	} while (fixproblem == true);
+}
 
 int getinputfromuser (){
-
 	int integer;
 	std::cin >> integer;;
-	while (std::cin.fail() || integer>9 || integer<=0 || std::count(invalidchoice.begin(), invalidchoice.end(), integer)==true) {
+	while (std::cin.fail() || integer>9 || integer<=0 || 
+		std::count(invalidchoice.begin(), invalidchoice.end(), integer)==true) {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max()), '\n';
 		system("cls");
@@ -35,7 +69,16 @@ void oneplayer()
 	else if (playeroneturn == false) 
 	{
 		std::srand(time(nullptr));
-		board[getinputfromuser() - 1] = 'O';
+		int randomaichoice = rand() % 9 + 1;
+		while (std::cin.fail() || randomaichoice > 9 || randomaichoice <= 0
+			|| std::count(invalidchoice.begin(), invalidchoice.end(), randomaichoice) == true) {
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max()), '\n';
+			system("cls");
+			randomaichoice = rand() % 9 + 1;
+		}
+		invalidchoice.emplace_back(randomaichoice);
+		board[randomaichoice - 1] = 'O';
 		playeroneturn = true;
 	}
 }
@@ -86,7 +129,6 @@ bool checkwin()
 	{
 		return false;
 	}
-	
 }
 
 void printBoard() 
@@ -98,11 +140,6 @@ void printBoard()
 			std::cout << "---|---|---" << std::endl;
 	  }
 	  std::cout << std::endl;
-}
-
-void checkmark() 
-{
-
 }
 
 void game_AI() 
@@ -129,7 +166,7 @@ void game_AI()
 		printBoard();
 		std::cout << "It's a tie!" << std::endl;
 	}
-
+	replaysystem();
 }
 
 void game_2_players() 
@@ -157,11 +194,20 @@ void game_2_players()
 		printBoard();
 		std::cout << "It's a tie!" << std::endl;
 	}
-		
+	replaysystem();
 }
 
-void menu() 
+
+int main() 
 {
+	system("cls");
+	std::cout << "\t\t\t\t\t" << "----------------------------------" << std::endl;
+	std::cout << "\t\t\t\t\t" << "|                                |" << std::endl;
+	std::cout << "\t\t\t\t\t" << "|          TIC TAC TOE           |" << std::endl;
+	std::cout << "\t\t\t\t\t" << "|             v 1.0              |" << std::endl;
+	std::cout << "\t\t\t\t\t" << "----------------------------------" << std::endl;
+	std::cout << "\n\t\t\t\t" << "Welcome to a simplistic version of Tic Tac Toe.  " << std::endl;
+
 	std::cout << "\n\n\n[1] Single player vs AI " << std::endl;
 	std::cout << "[2] Two players " << std::endl;
 	std::cout << "[0] Exit terminal" << std::endl;
@@ -169,61 +215,24 @@ void menu()
 
 
 	int game;
-	
-	do
-	{
-		std::cin >> game;
-		switch (game)
-		{
-		case 1:
-			game_AI();
+	std::cin >> game;
+	do{
+		do{
+			switch (game){
+			case 1:
+				game_AI();
+				break;
+			case 2:
+				game_2_players();
+				break;
+			case 0:
+				exit(EXIT_SUCCESS);
+				break;
+			default:
+				std::cout << "\nPlease select a number [0-2]. ";
 			break;
-		case 2:
-			game_2_players();
-			break;
-		case 0:
-			exit(EXIT_SUCCESS);
-			break;
-		default:
-			std::cout << "\nPlease select a number [0-2]. ";
-			break;
-		} 
-	
-	}
-	while (true);
-}
-
-
-int main() 
-{
-
-	system("cls");
-	std::cout << "\t\t\t\t\t" << "----------------------------------" << std::endl;
-	std::cout << "\t\t\t\t\t" << "|                                |" << std::endl;
-	std::cout << "\t\t\t\t\t" << "|          TIC TAC TOE           |" << std::endl;
-	std::cout << "\t\t\t\t\t" << "|             v 1.0              |" << std::endl;
-	std::cout << "\t\t\t\t\t" << "----------------------------------" << std::endl;
-
-	std::cout << "\n\t\t\t\t" << "Welcome to a simplistic version of Tic Tac Toe.  " << std::endl;
-
-
-	menu();
-
-	
-	//Main menu
-			//Add players
-				//Add 1 player vs AI
-					//Let player 1 be X (first to go) and AI to be O (second player)
-						//AI can be rand or Srand. 
-						//Boolean
-				//Add 2 players
-					//Player 1 is X (first to go) and Player 2 is O (second to go)
-						//Boolean
-	//Possibility to replay game. 
-		//Replay same scenario.
-			// If not, then go back to main menu
-		//Exit game if players wants to. 
-			//Go back to Main menu
-				//If else scenario
+			}
+		} while (true);
+	} while (replaygame==1);
 	return 0;
 }
