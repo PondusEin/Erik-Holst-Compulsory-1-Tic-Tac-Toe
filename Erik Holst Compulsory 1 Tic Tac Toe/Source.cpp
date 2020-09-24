@@ -11,6 +11,7 @@ std::vector	<char> board = { '1','2','3','4','5','6','7','8','9' };
 bool playeroneturn = true;
 int replaygame{ 1 };
 bool fixproblem = true;
+int integer;
 
 void clearboard() {
 	invalidchoice.clear();
@@ -44,16 +45,14 @@ void replaysystem() {
 }
 
 int getinputfromuser (){
-	int integer;
+
 	std::cin >> integer;;
-	while (std::cin.fail() || integer>9 || integer<=0 || 
-		std::count(invalidchoice.begin(), invalidchoice.end(), integer)==true) {
+	if (std::cin.fail() || integer <= 0 || integer > 9 || std::count(invalidchoice.begin(), invalidchoice.end(), integer)){
 		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max()), '\n';
-		system("cls");
-		std::cout << "Error" << integer << "is not a valid number.\n";
+		std::cin.ignore(32767), '\n';
+		std::cout << "Error: not a valid number.\n";
 		std::cin >> integer;
-	}
+	}  
 	invalidchoice.emplace_back(integer);
 	return integer;
 }
@@ -68,13 +67,12 @@ void oneplayer()
 	}
 	else if (playeroneturn == false) 
 	{
-		std::srand(time(nullptr));
+		std::srand(static_cast<unsigned int>(time(nullptr)));;
 		int randomaichoice = rand() % 9 + 1;
-		while (std::cin.fail() || randomaichoice > 9 || randomaichoice <= 0
-			|| std::count(invalidchoice.begin(), invalidchoice.end(), randomaichoice) == true) {
+		if (std::cin.fail() || randomaichoice > 9 || randomaichoice <= 0
+			|| std::count(invalidchoice.begin(), invalidchoice.end(), randomaichoice)) {
 			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max()), '\n';
-			system("cls");
+			std::cin.ignore(32767), '\n';
 			randomaichoice = rand() % 9 + 1;
 		}
 		invalidchoice.emplace_back(randomaichoice);
@@ -153,7 +151,6 @@ void game_AI()
 	if (checkwin() == true)
 	{
 		printBoard();
-		int player;
 		if (playeroneturn != true) {
 			std::cout << "Congratulations Player one, you are the winner" << std::endl;
 		}
@@ -181,7 +178,6 @@ void game_2_players()
 	if (checkwin() == true) 
 		{
 		printBoard();
-		int player;
 		if (playeroneturn != true) {
 			std::cout << "Congratulations Player one, you are the winner" << std::endl;
 		}
