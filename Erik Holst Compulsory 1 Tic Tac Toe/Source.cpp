@@ -5,15 +5,16 @@
 #include <ctime>		// for time
 #include <vector>		// for vectors
 #include <string>
-
+//global
 std::vector <int> invalidchoice;
-std::vector	<char> board = { '1','2','3','4','5','6','7','8','9' };
+std::vector	<char> board = { '1','2','3','4','5','6','7','8','9' };  //Vector board instead of Array as it was asked to practice more of vector
 bool playeroneturn = true;
 int replaygame{ 1 };
 bool fixproblem = true;
 int integer;
 
-void clearboard() {
+//local
+void clearboard() {				// Clears the board of 'X' and 'O' if the player want to restart a game. 
 	invalidchoice.clear();
 	for (int i = 1; i <= 9; i++)
 	{
@@ -22,34 +23,37 @@ void clearboard() {
 	}
 }
 
-void replaysystem() {
+void replaysystem() {			// Lets the player be able to play the same match again or if they want to exit the console. 
 	std::cout << "Would you like to play again?\nReplay same game [1]\nExit game [0]" << std::endl;
-
-	do
-	{
+	do{
 		std::cin >> replaygame;
-		switch (replaygame)
-		{
+		switch (replaygame){
 		case 1:
 			clearboard();
-			fixproblem = false;
+			playeroneturn = true;	/* made that X starts the game. 
+									If player want to remove that option 
+									and made it so that the game interchange, 
+									this line can be commented out*/
+
+			fixproblem = false;		/* Made the "fixproblem" to solve 
+									how the player could decide to 
+									start a new round without it bugging*/
 			break;
 		case 0:
-			exit(1);
+			exit(1);				// Tried to make it go to main menu and select a new option, 
+									//but instead opted to make it exit game alltogether. 
 			break;
 		default:
 			std::cout << "\nPlease select a number [0-1]. ";
-			break;
+			break;					//force the player or ai to select a valid integer
 		}
-	} while (fixproblem == true);
+	} while (fixproblem == true);	//For the Play again option to work.
 }
 
 int getinputfromuser (){
-
-	std::cin >> integer;;
-	if (std::cin.fail() || integer <= 0 || integer > 9 || std::count(invalidchoice.begin(), invalidchoice.end(), integer)){
-		std::cin.clear();
-		std::cin.ignore(32767), '\n';
+	std::cin >> integer;
+	while (std::cin.fail() || integer <= 0 || integer > 9 || std::count(invalidchoice.begin(), invalidchoice.end(), integer)) { /* this is to make sure the number 
+																																doesn't get chosen again*/
 		std::cout << "Error: not a valid number.\n";
 		std::cin >> integer;
 	}  
@@ -59,20 +63,15 @@ int getinputfromuser (){
 
 void oneplayer()
 {
-	if (playeroneturn == true)
-	{
+	if (playeroneturn == true){
 		std::cout << "Player's [X] turn: ";
 		board[getinputfromuser() - 1] = 'X';
 		playeroneturn = false;
 	}
-	else if (playeroneturn == false) 
-	{
-		std::srand(static_cast<unsigned int>(time(nullptr)));;
+	else if (playeroneturn == false) {
+		std::srand(static_cast<unsigned int>(time(nullptr))); //Ai player choses a random number, rather being advanced. 
 		int randomaichoice = rand() % 9 + 1;
-		if (std::cin.fail() || randomaichoice > 9 || randomaichoice <= 0
-			|| std::count(invalidchoice.begin(), invalidchoice.end(), randomaichoice)) {
-			std::cin.clear();
-			std::cin.ignore(32767), '\n';
+		while (std::cin.fail() || randomaichoice > 9 || randomaichoice <= 0 || std::count(invalidchoice.begin(), invalidchoice.end(), randomaichoice)) {
 			randomaichoice = rand() % 9 + 1;
 		}
 		invalidchoice.emplace_back(randomaichoice);
@@ -81,15 +80,14 @@ void oneplayer()
 	}
 }
 
-void twoplayer()
+void twoplayer() //two players
 {
-	if (playeroneturn == true)
-	{
+	if (playeroneturn == true){ //player one
 		std::cout << "Player 1's [X] turn: ";
 		board[getinputfromuser() - 1] = 'X';
 		playeroneturn = false;
 	}
-	else if (playeroneturn == false)
+	else if (playeroneturn == false) // player two
 	{
 		std::cout << "Player 2's [O] turn: ";
 		board[getinputfromuser() - 1] = 'O';
@@ -97,40 +95,38 @@ void twoplayer()
 	} 
 }
 
-bool checkwin() 
+bool checkwin()  //check win to see if the lines diagonally, vertically, or horizontally is correct and after eachother. If true, then win. Else, it's a tie.
 {
-	if (board[0] == board[1] && board[1] == board[2]) { 
+	if (board[0] == board[1] && board[1] == board[2]) {			//Horizontal win conditions begin
 		return true;
 	}
 	else if (board[3] == board[4] && board[4] == board[5]) {
 		return true;
 	}
-	else if (board[6] == board[7] && board[7] == board[8]) {
+	else if (board[6] == board[7] && board[7] == board[8]) {	//horizontal win conditions end
 		return true;
 	}
-	else if (board[0] == board[3] && board[3] == board[6]) {
+	else if (board[0] == board[3] && board[3] == board[6]) {	//vertical win conditions begin
 		return true;
 	}
 	else if (board[1] == board[4] && board[4] == board[7]) {
 		return true;
 	}
-	else if (board[2] == board[5] && board[5] == board[8]) {
+	else if (board[2] == board[5] && board[5] == board[8]) {	//vertical win cnditions end
 		return true;
 	}
-	else if (board[0] == board[4] && board[4] == board[8]) {
+	else if (board[0] == board[4] && board[4] == board[8]) {	//diagonal win conditions begin
 		return true;
 	}
-	else if (board[2] == board[4] && board[4] == board[6]) {
+	else if (board[2] == board[4] && board[4] == board[6]) {	//diagonal win conditions end
 		return true;
 	}
-	else
-	{
-		return false;
+	else{
+		return false; //Return false make it so that it turn to a draw by invalidchoice.size() == 9 
 	}
 }
 
-void printBoard() 
-{
+void printBoard() {		//prints and updates the board to see a new character in the board.at()
 	system("cls");
 	for (int i = 0; i < board.size(); i+=3){
 		std::cout << " " << board.at(i) << " | " << board.at(i + 1) << " | " << board.at(i + 2) << " " << std::endl;
@@ -140,62 +136,49 @@ void printBoard()
 	  std::cout << std::endl;
 }
 
-void game_AI() 
-{
-	while (checkwin() == false && invalidchoice.size() < 9)
-	{
-		//system("cls");
-		printBoard();
-		oneplayer();
+void game_AI() {	//game against AI
+	while (checkwin() == false && invalidchoice.size() < 9){
+		printBoard();	//prints out updated board
+		oneplayer();	//gets game conditions from oneplayer
 	}
-	if (checkwin() == true)
-	{
+	if (checkwin() == true){	//if checkwin is true, then a winner is announced
 		printBoard();
 		if (playeroneturn != true) {
 			std::cout << "Congratulations Player one, you are the winner" << std::endl;
 		}
-		else if (playeroneturn == true)
-		{
+		else if (playeroneturn == true){
 			std::cout << "AI is the winner" << std::endl;
 		}
 	}
-	else if (invalidchoice.size() == 9) {
+	else if (invalidchoice.size() == 9) {	//if checkwin is false, this pops up
 		printBoard();
 		std::cout << "It's a tie!" << std::endl;
 	}
-	replaysystem();
+	replaysystem();							//prints out the replay system to see if you want to restart or exit the game
 }
 
-void game_2_players() 
-{
-	while (checkwin() == false && invalidchoice.size() < 9 )
-	
-	{
-		//system("cls");
-		printBoard();
-		twoplayer();
+void game_2_players() {						// two player game with humans.
+	while (checkwin() == false && invalidchoice.size() < 9 ){
+		printBoard();						//prints out updated board
+		twoplayer();						//gets game condition from twoplaer
 	}
-	if (checkwin() == true) 
-		{
+	if (checkwin() == true) {				//if checkwin is true, then a winner is announced
 		printBoard();
 		if (playeroneturn != true) {
 			std::cout << "Congratulations Player one, you are the winner" << std::endl;
 		}
-			else if (playeroneturn == true) 
-			{
+			else if (playeroneturn == true) {
 			std::cout << "Congratulations Player 2, you are the winner" << std::endl;
 			}
 		}
-	else if (invalidchoice.size() == 9) {
+	else if (invalidchoice.size() == 9) {	//if checkwin is false, this pops up
 		printBoard();
 		std::cout << "It's a tie!" << std::endl;
 	}
-	replaysystem();
+	replaysystem();							//prints out the replay system to see if you want to restart or exit the game
 }
 
-
-int main() 
-{
+int main() {
 	system("cls");
 	std::cout << "\t\t\t\t\t" << "----------------------------------" << std::endl;
 	std::cout << "\t\t\t\t\t" << "|                                |" << std::endl;
@@ -209,9 +192,8 @@ int main()
 	std::cout << "[0] Exit terminal" << std::endl;
 	std::cout << "\nInput: ";
 
-
 	int game;
-	std::cin >> game;
+	std::cin >> game;		//game select
 	do{
 		do{
 			switch (game){
@@ -228,7 +210,7 @@ int main()
 				std::cout << "\nPlease select a number [0-2]. ";
 			break;
 			}
-		} while (true);
-	} while (replaygame==1);
+		} while (true);			//to select the option
+	} while (replaygame==1);	//to replay the same game mode and looping this
 	return 0;
 }
